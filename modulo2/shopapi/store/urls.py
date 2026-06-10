@@ -3,6 +3,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
+from store.views.auth import (
+    RegisterView, LogoutView,
+    PasswordResetRequestView, PasswordResetConfirmView,
+)
+
 from store.views.health    import health_check
 from store.views.auth      import RegisterView, LogoutView
 from store.views.user      import UserViewSet
@@ -10,6 +15,8 @@ from store.views.category  import CategoryViewSet
 from store.views.product   import ProductViewSet
 from store.views.order     import OrderViewSet
 from store.serializers.auth import CustomTokenView
+from store.views.email import SendNotificationView
+
 
 router = DefaultRouter()
 router.register('users',      UserViewSet,     basename='user')
@@ -25,4 +32,8 @@ urlpatterns = [
     path('auth/token/verify/',  TokenVerifyView.as_view()),
     path('auth/logout/',        LogoutView.as_view()),
     path('', include(router.urls)),
+    path('auth/password-reset/',         PasswordResetRequestView.as_view(), name='auth-password-reset'),       # ← nuevo
+    path('auth/password-reset/confirm/', PasswordResetConfirmView.as_view(), name='auth-password-reset-confirm'), # ← nuevo
+    path('emails/send/', SendNotificationView.as_view(), name='email-send-notification')
 ]
+
