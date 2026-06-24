@@ -4,12 +4,15 @@ type Producto = {
   nombre: string;
   precio: number;
   disponible: boolean;
+  existencia: number
 };
 
 const catalogo: Producto[] = [
-  { id: 1, nombre: "Laptop",  precio: 999,  disponible: true },
-  { id: 2, nombre: "Mouse",   precio: 25,   disponible: true },
-  { id: 3, nombre: "Monitor", precio: 350,  disponible: false },
+  { id: 1, nombre: "Laptop",  precio: 999,  disponible: true, existencia: 5 },
+  { id: 2, nombre: "Mouse",   precio: 25,   disponible: true, existencia: 7 },
+  { id: 3, nombre: "Monitor", precio: 350,  disponible: false, existencia: 1 },
+  { id: 4, nombre: "Celular",   precio: 850,   disponible: true, existencia: 3 },
+  { id: 5, nombre: "Tablet", precio: 350,  disponible: false, existencia: 2 },
 ];
 
 // TypeScript sabe que cada "p" es de tipo Producto
@@ -22,3 +25,4 @@ const masBarato: Producto | undefined = catalogo.reduce((min, p) =>
 console.log(nombres);                  // ["Laptop", "Mouse", "Monitor"]
 console.log(masBarato?.nombre);       // "Mouse"
 console.log(disponibles.length);      // 2
+console.log('Cuarto elemento', catalogo[4]);
