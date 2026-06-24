@@ -26,3 +26,4 @@ console.log(nombres);                  // ["Laptop", "Mouse", "Monitor"]
 console.log(masBarato?.nombre);       // "Mouse"
 console.log(disponibles.length);      // 2
 console.log('Cuarto elemento', catalogo[4]);
+
