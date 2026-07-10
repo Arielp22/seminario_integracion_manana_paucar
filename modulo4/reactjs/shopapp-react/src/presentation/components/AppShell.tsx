@@ -14,12 +14,10 @@ import {
 } from '@/presentation/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/presentation/components/ui/avatar'
 import { Separator } from '@/presentation/components/ui/separator'
+import { useCartStore } from '../store/cart.store'
 import { useEffect } from 'react'
-import { useProfileStore } from '@/presentation/store/profile.store'
-import { useCartStore } from '@/presentation/store/cart.store'
+import { useProfileStore } from '../store/profile.store'
 import { UserAvatar } from './UserAvatar'
-
-
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -53,9 +51,9 @@ export default function AppShell() {
 
   async function handleLogout() {
     await logout()
-    clearProfile()
     navigate('/login', { replace: true })
   }
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* ── Header ─────────────────────────────────────────────────────────── */}

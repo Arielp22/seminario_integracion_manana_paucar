@@ -5,9 +5,10 @@ import type { RegisterDto } from '../dtos/register.dto'
 
 export class AuthUseCase {
   private readonly authRepository: AuthRepository
-    constructor(authRepository: AuthRepository) {
-      this.authRepository = authRepository
-    }
+
+  constructor(authRepository: AuthRepository) {
+    this.authRepository = authRepository
+  }
 
   login(dto: LoginDto): Promise<AuthSession> {
     return this.authRepository.login(dto.username, dto.password)

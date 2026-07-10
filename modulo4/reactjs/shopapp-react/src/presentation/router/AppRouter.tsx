@@ -5,22 +5,20 @@ import { useAuthStore } from '@/presentation/store/auth.store'
 import ProtectedRoute from './ProtectedRoute'
 import AppShell from '@/presentation/components/AppShell'
 import PlaceholderPage from '../pages/PlaceholderPage'
+import CatalogPage from '../pages/catalog/CatalogPage'
+import ProductDetailPage from '../pages/catalog/ProductDetailPage'
+import CartPage from '../pages/cart/CartPage'
+import CheckoutPage from '../pages/orders/CheckoutPage'
+import OrdersPage from '../pages/orders/OrdersPage'
+import OrderDetailPage from '../pages/orders/OrderDetailPage'
+import ProfilePage from '../pages/profile/ProfilePage'
+import AdminDashboardPage from '../pages/admin/AdminDashboardPage'
 
 // ─── Lazy imports ─────────────────────────────────────────────────────────────
 
 // Auth (sin shell) — reales desde este módulo
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'))
 const RegisterPage = lazy(() => import('../pages/auth/RegisterPage'))
-const CatalogPage = lazy(() => import('../pages/catalog/CatalogPage'))
-const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'))
-const CartPage = lazy(() => import('../pages/cart/CartPage'))
-const CheckoutPage = lazy(() => import('../pages/orders/CheckoutPage'))
-const OrdersPage = lazy(() => import('../pages/orders/OrdersPage'))
-const OrderDetailPage = lazy(() => import('../pages/orders/OrderDetailPage'))
-const ProfilePage = lazy(() => import('../pages/profile/ProfilePage'))
-
-
-
 
 // El resto de páginas todavía no existen: se implementan en módulos posteriores
 // (Catálogo → 4/5, Carrito → 6, Órdenes → 7, Perfil → 8, Admin → 9-13) y cada uno
@@ -79,6 +77,7 @@ export default function AppRouter() {
                 </ProtectedRoute>
               }
             />
+
             <Route
               path="/orders"
               element={
@@ -109,7 +108,7 @@ export default function AppRouter() {
               path="/admin"
               element={
                 <ProtectedRoute requireStaff>
-                  <PlaceholderPage title="Admin Dashboard — Módulo 9" />
+                  <AdminDashboardPage />
                 </ProtectedRoute>
               }
             />
@@ -154,5 +153,3 @@ export default function AppRouter() {
     </BrowserRouter>
   )
 }
-
-
