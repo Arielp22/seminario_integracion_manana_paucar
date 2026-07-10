@@ -1,6 +1,12 @@
-// src/App.tsx — SOLO PARA VERIFICACIÓN, eliminar después
+// src/App.tsx
 import AppRouter from './presentation/router/AppRouter'
+import { Toaster } from 'sonner'
 
 export default function App() {
-  return <AppRouter />
+  return (
+    <>
+      <AppRouter />
+      <Toaster richColors position="top-right" />
+    </>
+  )
 }
