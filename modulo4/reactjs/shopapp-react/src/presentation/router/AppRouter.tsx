@@ -13,6 +13,7 @@ const LoginPage = lazy(() => import('../pages/auth/LoginPage'))
 const RegisterPage = lazy(() => import('../pages/auth/RegisterPage'))
 const CatalogPage = lazy(() => import('../pages/catalog/CatalogPage'))
 const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'))
+const CartPage = lazy(() => import('../pages/cart/CartPage'))
 
 
 
@@ -62,7 +63,7 @@ export default function AppRouter() {
               path="/cart"
               element={
                 <ProtectedRoute>
-                  <PlaceholderPage title="Carrito — Módulo 6" />
+                  <CartPage />
                 </ProtectedRoute>
               }
             />
