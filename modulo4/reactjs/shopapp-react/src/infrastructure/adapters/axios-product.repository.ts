@@ -6,7 +6,6 @@ import type { Product } from '@/domain/entities/product.entity'
 import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
 import type { ProductFilters } from '@/domain/entities/product-filters.entity'
 import type { ProductStats } from '@/domain/entities/product-stats.entity'
-
 type CreateProductPayload = Parameters<ProductRepository['createProduct']>[0]
 
 export class AxiosProductRepository implements ProductRepository {
@@ -42,15 +41,15 @@ export class AxiosProductRepository implements ProductRepository {
       throw parseApiError(err)
     }
   }
-
   async getStats(): Promise<ProductStats> {
-    try {
-      const { data } = await apiClient.get<ProductStats>('/products/stats/')
-      return data
-    } catch (err) {
-      throw parseApiError(err)
-    }
+  try {
+    const { data } = await apiClient.get<ProductStats>('/products/stats/')
+    return data
+  } catch (err) {
+    throw parseApiError(err)
   }
+  
+}
   async createProduct(payload: CreateProductPayload): Promise<Product> {
     try {
       const { data } = await apiClient.post<Product>('/products/', payload)
@@ -91,5 +90,19 @@ export class AxiosProductRepository implements ProductRepository {
       throw parseApiError(err)
     }
   }
+  async uploadImage(id: number, file: File): Promise<Product> {
+    const formData = new FormData()
+    formData.append('image', file)
 
+    try {
+      const { data } = await apiClient.patch<Product>(`/products/${id}/`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      return data
+    } catch (err) {
+      throw parseApiError(err)
+    }
+  }
 }

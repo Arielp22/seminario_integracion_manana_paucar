@@ -5,8 +5,7 @@ import type { RegisterDto } from '../dtos/register.dto'
 
 export class AuthUseCase {
   private readonly authRepository: AuthRepository
-
-  constructor(authRepository: AuthRepository) {
+  constructor (authRepository: AuthRepository){
     this.authRepository = authRepository
   }
 

@@ -4,29 +4,30 @@ import { Suspense, lazy, useEffect } from 'react'
 import { useAuthStore } from '@/presentation/store/auth.store'
 import ProtectedRoute from './ProtectedRoute'
 import AppShell from '@/presentation/components/AppShell'
-import CatalogPage from '../pages/catalog/CatalogPage'
-import ProductDetailPage from '../pages/catalog/ProductDetailPage'
-import CartPage from '../pages/cart/CartPage'
-import CheckoutPage from '../pages/orders/CheckoutPage'
-import OrdersPage from '../pages/orders/OrdersPage'
-import OrderDetailPage from '../pages/orders/OrderDetailPage'
-import ProfilePage from '../pages/profile/ProfilePage'
-import AdminDashboardPage from '../pages/admin/AdminDashboardPage'
-import AdminCategoriesPage from '../pages/admin/AdminCategoriesPage'
-import AdminProductsPage from '../components/admin/AdminProductsPage'
-import AdminOrdersPage from '../components/admin/AdminOrdersPage'
-import AdminOrderDetailPage from '../pages/admin/AdminOrderDetailPage'
-import AdminUsersPage from '../pages/admin/AdminUsersPage'
+
 
 // ─── Lazy imports ─────────────────────────────────────────────────────────────
 
 // Auth (sin shell) — reales desde este módulo
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'))
 const RegisterPage = lazy(() => import('../pages/auth/RegisterPage'))
-
+const CatalogPage = lazy(() => import('../pages/catalog/CatalogPage'))
+const ProductDetailPage = lazy(() => import('../pages/catalog/ProductDetailPage'))
+const CartPage = lazy(() => import('../pages/cart/CartPage'))
+const CheckoutPage = lazy(() => import('../pages/orders/CheckoutPage'))
+const OrdersPage = lazy(() => import('../pages/orders/OrdersPage'))
+const OrderDetailPage = lazy(() => import('../pages/orders/OrderDetailPage'))
+const ProfilePage = lazy(() => import('../pages/profile/ProfilePage'))
+const AdminCategoriesPage = lazy(() => import('../pages/admin/AdminCategoriesPage'))
+const AdminDashboardPage = lazy(() => import('../pages/admin/AdminDashboardPage'))
+const AdminProductsPage = lazy(() => import('../pages/admin/AdminProductsPage'))
+const AdminOrdersPage = lazy(() => import('../pages/admin/AdminOrdersPage'))
+const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'))
 // El resto de páginas todavía no existen: se implementan en módulos posteriores
 // (Catálogo → 4/5, Carrito → 6, Órdenes → 7, Perfil → 8, Admin → 9-13) y cada uno
 // reemplaza aquí su propio <Route> por un lazy import real.
+// ...
+
 
 // ─── Loader global ────────────────────────────────────────────────────────────
 
@@ -59,7 +60,6 @@ export default function AppRouter() {
 
           {/* ── Rutas con AppShell ── */}
           <Route element={<AppShell />}>
-            {/* Públicas — placeholder hasta el módulo 4/5 */}
             <Route path="/" element={<CatalogPage />} />
             <Route path="/catalog" element={<CatalogPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
@@ -73,15 +73,6 @@ export default function AppRouter() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/orders/new"
-              element={
-                <ProtectedRoute>
-                  <CheckoutPage />
-                </ProtectedRoute>
-              }
-            />
-
             <Route
               path="/orders"
               element={
@@ -98,14 +89,23 @@ export default function AppRouter() {
                 </ProtectedRoute>
               }
             />
+        
             <Route
-              path="/profile"
+              path="/orders/new"
               element={
                 <ProtectedRoute>
-                  <ProfilePage />
+                  <CheckoutPage />
                 </ProtectedRoute>
               }
             />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
 
             {/* Requieren autenticación + rol staff — placeholder hasta los módulos 9 a 13 */}
             <Route
@@ -137,14 +137,6 @@ export default function AppRouter() {
               element={
                 <ProtectedRoute requireStaff>
                   <AdminOrdersPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/orders/:id"
-              element={
-                <ProtectedRoute requireStaff>
-                  <AdminOrderDetailPage />
                 </ProtectedRoute>
               }
             />

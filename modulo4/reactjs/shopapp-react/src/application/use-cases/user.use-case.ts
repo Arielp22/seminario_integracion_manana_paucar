@@ -7,33 +7,34 @@ import type { AdminUser } from '@/domain/entities/admin-user.entity'
 import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
 
 export class UserUseCase {
-    private readonly userRepository: UserRepository
+  private readonly userRepository: UserRepository
+    constructor (userRepository: UserRepository){
+    this.userRepository = userRepository
+  }
 
-    constructor(userRepository: UserRepository) {
-        this.userRepository = userRepository
-    }
+  getProfile(): Promise<UserProfile> {
+    return this.userRepository.getProfile()
+  }
 
-    getProfile(): Promise<UserProfile> {
-        return this.userRepository.getProfile()
-    }
+  updateProfile(dto: UpdateProfileDto): Promise<UserProfile> {
+    return this.userRepository.updateProfile(dto)
+  }
+  getStats(): Promise<UserStats> {
+    return this.userRepository.getStats()
+  }
 
-    updateProfile(dto: UpdateProfileDto): Promise<UserProfile> {
-        return this.userRepository.updateProfile(dto)
-    }
-    getStats(): Promise<UserStats> {
-        return this.userRepository.getStats()
-    }
-    
-    getUsers(page = 1, search?: string): Promise<PaginatedResult<AdminUser>> {
-        return this.userRepository.getUsers(page, search)
-    }
+  getUsers(page = 1, search?: string): Promise<PaginatedResult<AdminUser>> {
+    return this.userRepository.getUsers(page, search)
+  }
 
-    updateUserStaffStatus(id: number, isStaff: boolean): Promise<AdminUser> {
-        return this.userRepository.updateUserStaffStatus(id, isStaff)
-    }
+  updateUserStaffStatus(id: number, isStaff: boolean): Promise<AdminUser> {
+    return this.userRepository.updateUserStaffStatus(id, isStaff)
+  }
 
-    toggleUserActive(id: number): Promise<{ is_active: boolean }> {
-        return this.userRepository.toggleUserActive(id)
-    }
-
+  toggleUserActive(id: number): Promise<{ is_active: boolean }> {
+    return this.userRepository.toggleUserActive(id)
+  }
+  uploadAvatar(file: File): Promise<UserProfile> {
+    return this.userRepository.uploadAvatar(file)
+  }
 }

@@ -4,6 +4,7 @@ import type { Order } from '../entities/order.entity'
 import type { PaginatedResult } from '../entities/paginated-result.entity'
 import type { OrderStatus } from '../enums/order-status.enum'
 
+
 export interface OrderRepository {
   getOrders(page?: number, status?: OrderStatus): Promise<PaginatedResult<Order>>
   getOrder(id: number): Promise<Order>

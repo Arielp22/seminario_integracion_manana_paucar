@@ -12,11 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/presentation/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback } from '@/presentation/components/ui/avatar'
 import { Separator } from '@/presentation/components/ui/separator'
 import { useCartStore } from '../store/cart.store'
-import { useEffect } from 'react'
 import { useProfileStore } from '../store/profile.store'
+import { useEffect } from 'react'
 import { UserAvatar } from './UserAvatar'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -41,8 +40,7 @@ export default function AppShell() {
   const { user, logout } = useAuthStore()
   const { profile, fetchProfile, clearProfile } = useProfileStore()
   const cartItemCount = useCartStore((s) => s.itemCount())
-
-  // Carga el perfil una sola vez cuando hay sesión activa
+  
   useEffect(() => {
     if (user && !profile) {
       fetchProfile()
@@ -51,6 +49,7 @@ export default function AppShell() {
 
   async function handleLogout() {
     await logout()
+    clearProfile()
     navigate('/login', { replace: true })
   }
 
@@ -124,9 +123,9 @@ export default function AppShell() {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full" aria-label="Menú de usuario">
-                    <UserAvatar user={profile} size="sm" />
-                  </Button>
+                    <Button variant="ghost" className="relative h-9 w-9 rounded-full" aria-label="Menú de usuario">
+                        <UserAvatar user={profile} size="sm" />
+                    </Button>
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align="end" className="w-48">

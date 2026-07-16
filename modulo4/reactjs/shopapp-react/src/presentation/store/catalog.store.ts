@@ -66,11 +66,11 @@ export const useCatalogStore = create<CatalogState & CatalogActions>((set, get) 
   },
 
   async fetchCategories() {
-    try {
+     try {
       const data = await categoryUseCase.getCategories()
       set({ categories: data.filter((c) => c.is_active) })
     } catch {
-      // Las categorías son opcionales; no bloquear la UI si fallan
+      
     }
   },
 

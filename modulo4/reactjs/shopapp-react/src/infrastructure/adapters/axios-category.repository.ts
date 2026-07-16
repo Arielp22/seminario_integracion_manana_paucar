@@ -7,6 +7,15 @@ import type { PaginatedResult } from '@/domain/entities/paginated-result.entity'
 import type { CategoryStats } from '@/domain/entities/category-stats.entity'
 
 export class AxiosCategoryRepository implements CategoryRepository {
+
+  async getStats(): Promise<CategoryStats> {
+    try {
+      const { data } = await apiClient.get<CategoryStats>('/categories/stats/')
+      return data
+    } catch (err) {
+      throw parseApiError(err)
+    }
+  }
   async getCategories(): Promise<Category[]> {
     try {
       // page_size alto: el admin y el filtro de la tienda esperan la lista completa,
@@ -49,14 +58,6 @@ export class AxiosCategoryRepository implements CategoryRepository {
   async deleteCategory(id: number): Promise<void> {
     try {
       await apiClient.delete(`/categories/${id}/`)
-    } catch (err) {
-      throw parseApiError(err)
-    }
-  }
-  async getStats(): Promise<CategoryStats> {
-    try {
-      const { data } = await apiClient.get<CategoryStats>('/categories/stats/')
-      return data
     } catch (err) {
       throw parseApiError(err)
     }

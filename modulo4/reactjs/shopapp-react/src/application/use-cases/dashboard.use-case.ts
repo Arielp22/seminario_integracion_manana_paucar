@@ -1,8 +1,8 @@
 // src/application/use-cases/dashboard.use-case.ts
-import { CategoryUseCase } from './category.use-case'
-import { ProductUseCase } from './product.use-case'
-import { OrderUseCase } from './order.use-case'
-import { UserUseCase } from './user.use-case'
+import type { CategoryUseCase } from './category.use-case'
+import type { ProductUseCase } from './product.use-case'
+import type { OrderUseCase } from './order.use-case'
+import type { UserUseCase } from './user.use-case'
 import type { AdminStats } from '@/domain/entities/admin-stats.entity'
 
 export class DashboardUseCase {

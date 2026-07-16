@@ -11,6 +11,7 @@ import { useOrderStore } from '@/presentation/store/order.store'
 import { formatPrice, formatDate } from '@/presentation/utils/formatters'
 import { StatusBadge } from '@/presentation/components/StatusBadge'
 
+
 // `StandardPagination` de Django usa page_size=10 por defecto; el adapter no lo sobreescribe.
 const PAGE_SIZE = 10
 

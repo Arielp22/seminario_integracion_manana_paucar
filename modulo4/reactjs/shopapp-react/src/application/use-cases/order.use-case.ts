@@ -8,14 +8,17 @@ import type { OrderStatus } from '@/domain/enums/order-status.enum'
 
 export class OrderUseCase {
   private readonly orderRepository: OrderRepository
-
-  constructor(orderRepository: OrderRepository) {
-    this.orderRepository = orderRepository
+    constructor (orderRepository: OrderRepository){
+        this.orderRepository= orderRepository
   }
 
   getOrders(page = 1, status?: OrderStatus): Promise<PaginatedResult<Order>> {
-    return this.orderRepository.getOrders(page, status)
-  }
+  return this.orderRepository.getOrders(page, status)
+}
+ 
+updateOrderStatus(id: number, status: OrderStatus): Promise<Order> {
+  return this.orderRepository.updateOrderStatus(id, status)
+}
 
   getOrder(id: number): Promise<Order> {
     return this.orderRepository.getOrder(id)
@@ -34,8 +37,5 @@ export class OrderUseCase {
   }
   getStats(): Promise<OrderStats> {
     return this.orderRepository.getStats()
-  }
-  updateOrderStatus(id: number, status: OrderStatus): Promise<Order> {
-    return this.orderRepository.updateOrderStatus(id, status)
   }
 }
