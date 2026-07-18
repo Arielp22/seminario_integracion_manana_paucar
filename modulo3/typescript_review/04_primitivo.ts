@@ -17,14 +17,14 @@ const esAdmin: boolean      = false;
 // ── Aritmética con number ─────────────────────────────────────────────────
 const subtotal = 1500;
 const descuento = 150;
-const total = subtotal - descuento;  // 1350
+const total = subtotal - descuento; 
 
 // ── Métodos de string ─────────────────────────────────────────────────────
 const usuario = "  admin@corp.com  ";
-console.log(usuario.trim().toLowerCase()); // "admin@corp.com"
-console.log(email.includes("empresa"));    // true
+console.log(usuario.trim().toLowerCase()); 
+console.log(email.includes("empresa"));    
 console.log(email.split("@"));   
-console.log(email.split("@")[1]);          // "empresa.com"
+console.log(email.split("@")[1]);          
 
 let personas : string = "Pablo;Marmol;25;12-12-2021";
 console.log(personas.split(";"));    

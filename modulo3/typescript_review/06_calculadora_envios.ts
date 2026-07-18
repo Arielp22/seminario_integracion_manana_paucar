@@ -11,7 +11,7 @@ interface Paquete {
 }
 
 const TARIFAS: Record<ZonaEnvio, number> = {
-  local:           2.50,   // $ por kg
+  local:           2.50, 
   nacional:        5.00,
   internacional:  12.00,
 };
