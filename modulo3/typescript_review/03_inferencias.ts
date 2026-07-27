@@ -27,3 +27,5 @@ codigo = "OK";  // válido
 function ping(host: string, intentos: number): string {
   return `Ping a ${host} — ${intentos} intento(s)`;
 }
+
+console.log(ping("localhost", 4));
